@@ -1,15 +1,15 @@
 #include <vector>
 using namespace std;
 
-struct move_data
-{
-    int x;
-    int y;
-    double safety;              //Security around our piece
-	//double hitPoint;              //
-    double play;
-	//bool check;
-};
+//struct move_data
+//{
+//    int x;
+//    int y;
+//    double safety;              //Security around our piece
+//	//double hitPoint;              //
+//    double play;
+//	//bool check;
+//};
 
 class piece
 {
@@ -22,7 +22,7 @@ private:
 	double chance[13];           
 	
 	//us
-    vector <move_data> move;
+    //vector <move_data> move;	  //save move_data / used in unkown
 	bool id;                      //Known by opponent
 
 	//opponent
