@@ -10,8 +10,7 @@ private:
 	//player * plr[2];
 public:
 	board();
-	//bool move(int, int, int, int, piece *);   //Asan yadam nemiad bara chi in tabe ro neveshtam!:|   kheili bade ke in ghad fasele miofte beine code zadanemun! :\
-
+	//bool move(int, int, int, int, piece *);   //Asan yadam nemiad bara chi in tabe ro neveshtam!:|
 	piece * getcell(int, int);         
 	int ** getcell();
 	bool add(int x, int y, piece * p);
@@ -57,21 +56,7 @@ board::board()
 
 piece * board:: getcell(int x, int y)
 {
-    if(y >= 0 && y < 10)
-    {
-        if (x >= 0 && x <10)
-        {
-            if(!(x == 4 && (y == 2 || y == 3 || y == 6 || y == 7)))
-            {
-                if(!(x == 5 && (y == 2 || y == 3 || y == 6 || y == 7)))
-                {
-                    return brd[x][y];
-                }
-            }
-        }
-    }
-
-    return NULL;
+    return brd[x][y];
 }
 
 int ** board:: getcell()
@@ -127,9 +112,9 @@ bool board:: pop(int x, int y)
 
 bool board:: can (int x, int y)
 {
-	if(y > 0 && y < 10)
+    if(y >= 0 && y < 10)
 	{
-		if (x > 0 && x <10)
+        if (x >= 0 && x <10)
 		{
 			if(!(x==4 && (y==2 || y==3 || y==6 || y==7)))
 			{
