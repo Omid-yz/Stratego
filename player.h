@@ -333,14 +333,42 @@ action_data player::min_max(int l, player inp, bool op)
 	{
 		vector <action_data> action;
 		action = get_action(*inp.bord, op);
-		int size = action.size();
+		const int size = action.size();
 		action_data *temp;
+		player temporary_player(inp.bord);
 		temp = new action_data[size];
+		int op_count = 0;
+		
+		for (int i = 0; i < 13; i++)
+		{
+			temporary_player.pcount[i] = inp.pcount[i];
+//			op_count += inp.pcount[i];
+		}
+		
+		for (int i = 0; i < 10; i++)
+		{
+			for (int j = 0; j < 10; j++)
+			{
+				if (bord.getcell(i, j) != NULL)
+				{
+					if (bord.getcell(i, j) -> get_op())
+					{
+						op_count++;
+					}
+				}
+			}
+		}
 
 		for (int i = 0; i < size; i++)
 		{
-			*inp.bord = get_board(*inp.bord, action[i]);
-			temp[i] = min_max(l - 1, inp, !op);
+			temporary_player.bord = inp.bord;
+			*temporary_player.bord = get_board(*inp.bord, action[i]);
+			if (action[i].x2 != -1)
+			{
+				temporary_player.op_count--;
+			}
+			
+			temp[i] = min_max(l - 1, temporary_player, !op);
 		}
 
 		if (op)
@@ -378,9 +406,9 @@ action_data player::min_max(int l, player inp, bool op)
 
 	else
 	{
-		action_data temp;
-		inp.bord = get_board
-		temp.board_scr = board_score(
+		action_data ll_score;
+		ll_score.board_scr = board_score(inp);
+		return ll_score;
 	}
 }
 
